@@ -1,0 +1,19 @@
+- list: my_programs
+  items: [ls, cat, pwd]
+
+- rule: my_programs_opened_file
+  desc: track whenever a set of programs opens a file
+  condition: proc.name in (my_programs) and evt.type=open
+  output: a tracked program opened a file (user=%user.name command=%proc.cmdline file=%fd.name)
+  priority: INFO
+
+
+
+- macro: access_file
+  condition: evt.type=open
+
+- rule: program_accesses_file
+  desc: track whenever a set of programs opens a file
+  condition: proc.name in (cat, ls) and (access_file)
+  output: a tracked program opened a file (user=%user.name command=%proc.cmdline file=%fd.name)
+  priority: INFO

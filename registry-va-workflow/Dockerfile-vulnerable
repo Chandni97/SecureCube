@@ -1,0 +1,9 @@
+FROM node:slim
+ADD sources.list /etc/apt/sources.list
+RUN apt-get update && apt-get dist-upgrade -y
+RUN apt-get install --allow-downgrades -y apt=1.4.8
+COPY app.js .
+COPY package.json .
+RUN npm install
+EXPOSE  8080
+CMD node app.js
