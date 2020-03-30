@@ -135,9 +135,9 @@ webserver:
 # Also, the program will be closed and reopened if falco is signaled with
 # SIGUSR1.
 program_output:
-  enabled: true
+  enabled: false
   keep_alive: false
-  program: "jq '{text: .output}' | curl -d @- -X POST https://hooks.slack.com/services/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"
+  program: "jq '{text: .output}' | curl -d @- -X POST https://hooks.slack.com/services/xxxxxxx/xxxxxxxxxxxxx"
 
 http_output:
   enabled: false
